@@ -19,42 +19,70 @@
             color: #333;
         }
 
-        .link {
-            background-color: #4CAF50;
-            border: #4CAF50;
+        /* Navbar */
+        nav {
+            background: linear-gradient(135deg, #43a047, #66bb6a);
             color: white;
-            font-size: 1.0rem;
-            text-decoration: underline;
-            font-family: Verdana, Geneva, Tahoma, sans-serif;
-        }
-
-        .header {
-            background-color: #4CAF50;
-            color: white;
-            padding: 20px;
-            text-align: center;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            line-height: 1.4rem;
-        }
-
-        .nav {
             display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 10px;
-            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
-        .nav a {
+        nav .logo {
+            font-size: 1.3rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 15px;
+        }
+
+        nav ul li a {
             color: white;
             text-decoration: none;
-            font-size: 18px;
-            font-weight: bold;
+            font-size: 0.95rem;
+            transition: color 0.3s;
         }
 
-        .nav a:hover {
-            text-decoration: underline;
+        nav ul li a:hover {
+            color: #c8e6c9;
         }
+
+        /* Mobile menu button (hamburger ☰) */
+        .menu-toggle {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: white;
+        }
+         /* Mobile Optimization */
+   @media (max-width: 768px) {
+      nav ul {
+        display: none;
+        flex-direction: column;
+        background: #2e7d32;
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        padding: 10px;
+        border-radius: 5px;
+      }
+      nav ul.active {
+        display: flex;
+      }
+      .menu-toggle {
+        display: block;
+      }
+    }
 
         .btn {
             display: flex;
@@ -282,19 +310,23 @@
 </head>
 
 <body>
-    <div class="header">
-        <h1>TeyZEE Menus!</h1>
-        <p>Easy Online Orders
-            <br> for Restaurants -
-            <br> InHouse/ Order On <button class="link" onclick="window.location.href='https://wa.me/919029027420'">WhatsApp
-                </button>
-        </p>
+    <!-- Green NavBar -->
+    <nav>
+        <div class="logo">
+            <a href="index.html">
+                <img alt="Teyzee Sites Logo" src="images/teyzee_sites_logo.png" style="height:100px; width:auto;" />
+            </a>
+        </div>
+        <button class="menu-toggle">☰</button> <!-- Hamburger Menu -->
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="storefront.html">Storefront</a></li>
+            <li><a href="#">Menu</a></li>
+            <li><a href="#">Booking</a></li>
+        </ul>
+    </nav>
 
-    </div>
-    <div class="translate">
-        <p>Translate this page:</p>
-        <div id="google_translate_element"></div>
-    </div>
+
     <div class="container">
         <div class="pricing-box" id="silver">
             <h1>Silver Plan - ₹999/year</h1>
@@ -320,8 +352,9 @@
                 <button class="cta-button"
                     onclick="window.location.href='https://290bf9c8.teyzee-silver.pages.dev/'">Live
                     Menu</button>
-                    <a href="https://www.ariaprohotels.com/product/teyzee-code-menu/" class="order-button" target="_blank">Order Tezyee
-                        Menu</a>
+                <a href="https://www.ariaprohotels.com/product/teyzee-code-menu/" class="order-button"
+                    target="_blank">Order Tezyee
+                    Menu</a>
             </div>
 
 
@@ -345,8 +378,7 @@
             <img src="images/gold-dark-background.jpg" alt="Gold Plan package display on dark background"
                 loading="lazy">
             <div class="btn">
-                <button class="cta-button"
-                    onclick="window.location.href='https://1677e847.teyzee-gold.pages.dev'">Live
+                <button class="cta-button" onclick="window.location.href='https://1677e847.teyzee-gold.pages.dev'">Live
                     Menu</button>
                 <a href="https://www.ariaprohotels.com/product/teyzee-online-food-menu-text-only-gold-version/"
                     class="order-button" target="_blank">Order Tezyee
@@ -374,8 +406,8 @@
                 loading="lazy">
             <div class="btn">
                 <button class="cta-button"
-                onclick="window.location.href=' https://fd289a06.teyzee-platinum.pages.dev/'">Live
-                Menu</button>
+                    onclick="window.location.href=' https://fd289a06.teyzee-platinum.pages.dev/'">Live
+                    Menu</button>
                 <a href="https://www.ariaprohotels.com/product/teyzee-qr-code-image/" class="order-button"
                     target="_blank">Order Tezyee
                     Menu</a>
@@ -417,6 +449,15 @@
             </p>
         </div>
     </div>
+    <script>
+    // Toggle menu on click
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('nav ul');
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+  </script>
     <script>
 
         window.onscroll = function () { scrollFunction() };

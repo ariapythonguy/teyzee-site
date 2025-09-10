@@ -21,7 +21,7 @@
     }
      /* Navbar */
     nav {
-      background: #2e7d32; /* green */
+      background: linear-gradient(135deg, #43a047, #66bb6a); 
       color: white;
       display: flex;
       justify-content: space-between;
@@ -98,7 +98,7 @@
     }
 
     /* Mobile Optimization */
-    @media (max-width: 768px) {
+   @media (max-width: 768px) {
       nav ul {
         display: none;
         flex-direction: column;
@@ -240,20 +240,22 @@
 </head>
 <body>
 <!-- Green NavBar -->
-<nav>
-<div class="logo">
-<a href="index.html">
-<img alt="Teyzee Sites Logo" src="images/teyzee_sites_logo.png" style="height:100px; width:auto;"/>
-</a>
-</div>
-<button class="menu-toggle">☰</button> <!-- Hamburger Menu -->
-<ul>
-<li><a href="index.html">Home</a></li>
-<li><a href="storefront_index.html">Storefront</a></li>
-<li><a href="menu_index.html">Menu</a></li>
-<li><a href="booking_index.html">Booking</a></li>
-</ul>
-</nav>
+  <nav>
+    <div class="logo">
+      <a href="index.html">
+        <img alt="Teyzee Sites Logo" src="images/teyzee_sites_logo.png" style="height:100px; width:auto;"/>
+      </a>
+    </div>
+    <button class="menu-toggle">☰</button> <!-- Hamburger Menu -->
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="storefront.html">Storefront</a></li>
+      <li><a href="#">Menu</a></li>
+      <li><a href="#">Booking</a></li>
+    </ul>
+  </nav>
+
+
 <main class="container">
   <div class="panel">
   <a href="storefront_index.html" style="text-decoration:none; color:inherit; display:block;">
@@ -291,5 +293,15 @@
 <li><a href="https://wa.me/919029027420">WhatsApp Us</a></li> 
     © 2025 Teyzee Sites ( C/o Kall Trip P Ltd - Since 2011 - 14 years of Service). All rights reserved. 
   </footer>
+
+  <script>
+    // Toggle menu on click
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('nav ul');
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+  </script>
 </body>
 </html>
