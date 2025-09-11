@@ -1,11 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Teyzee Storefront</title>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
       font-family: 'Poppins', sans-serif;
       background: #f9f9f9;
@@ -14,39 +20,31 @@
 
     /* Navbar */
     nav {
-      background: linear-gradient(135deg, #43a047, #66bb6a); 
+      background: #66bb6a;
       color: white;
       display: flex;
-      justify-content: space-between;
+      flex-direction: column; /* stack elements vertically */
       align-items: center;
       padding: 15px 20px;
       position: sticky;
       top: 0;
-      z-index: 1000;
-    }
-    nav .logo {
-      font-size: 1.3rem;
-      font-weight: bold;
-      letter-spacing: 1px;
-    }
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 15px;
-    }
-    nav ul li a {
-      color: white;
-      text-decoration: none;
-      font-size: 0.95rem;
-      transition: color 0.3s;
-    }
-    nav ul li a:hover {
-      color: #c8e6c9;
+      z-index: 1100;
     }
 
-    /* Mobile menu button (hamburger ☰) */
+    .top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+
+    .logo img {
+      height: 100px;
+      width: auto;
+    }
+
     .menu-toggle {
-      display: none;
+      display: block;
       font-size: 1.8rem;
       cursor: pointer;
       background: none;
@@ -54,9 +52,46 @@
       color: white;
     }
 
+    .nav-subheading {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 600;
+    }
+
+    nav ul {
+      list-style: none;
+      display: none; /* hidden until toggle */
+      flex-direction: column;
+      background: #2e7d32;
+      position: absolute;
+      top: 120px; /* below navbar */
+      right: 20px;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    nav ul.active {
+      display: flex;
+    }
+
+    nav ul li {
+      margin: 5px 0;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: color 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: #c8e6c9;
+    }
+
     /* Hero Section */
     .hero {
-      background: #ffffff; /* light */
+      background: #ffffff;
       color: #333;
       text-align: center;
       padding: 60px 20px;
@@ -89,267 +124,372 @@
       margin-top: 10px;
       display: inline-block;
     }
-    /* Feature Section */
+
+    /* Features Section */
     .features {
-    background: #f4f9f4;
-    padding: 50px 20px;
-    text-align: center;
-  }
-  .features h2 {
-    font-size: 1.8rem;
-    color: #2e7d32;
-    margin-bottom: 30px;
-  }
-  .features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    max-width: 1000px;
-    margin: auto;
-  }
-  .feature-card {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
-    font-size: 1.05rem;
-    font-weight: 500;
-    color: #333;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-  }
-  .feature-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
-  }
-  /* Optional Section  */
-  .optionals {
-    background: #ffffff;
-    padding: 50px 20px;
-    text-align: center;
-  }
+      background: #f4f9f4;
+      padding: 50px 20px;
+      text-align: center;
+    }
 
-  .optionals h2 {
-    font-size: 1.8rem;
-    color: #2e7d32;
-    margin-bottom: 25px;
-  }
+    .features h2 {
+      font-size: 1.8rem;
+      color: #2e7d32;
+      margin-bottom: 30px;
+    }
 
-  .optional-list {
-    list-style: none;
-    max-width: 700px;
-    margin: auto;
-    padding: 0;
-    text-align: left;
-  }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
 
-  .optional-list li {
-    background: #f4f9f4;
-    margin: 10px 0;
-    padding: 15px 20px;
-    border-radius: 8px;
-    font-size: 1.1rem;
-    font-weight: 500;
-    color: #333;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.05);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-  }
+    .feature-card {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: #333;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
 
-  .optional-list li:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
-  }
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    }
 
-  .optional-list li span {
-    font-size: 0.95rem;
-    color: #555;
-    font-weight: 400;
-    margin-left: 5px;
-  }
-  /* Pricing Section  */
-  .pricing {
-    background: #f4f9f4;
-    padding: 60px 20px;
-    text-align: center;
-  }
-  .pricing h2 {
-    font-size: 2rem;
-    color: #2e7d32;
-    margin-bottom: 40px;
-  }
-  .pricing-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
-    max-width: 1100px;
-    margin: auto;
-  }
-  .pricing-card {
-    background: #fff;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    text-align: left;
-    margin: 5px;
-  }
-  .pricing-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 18px rgba(0,0,0,0.15);
-  }
-  .pricing-card h3 {
-    text-align: center;
-    margin-bottom: 15px;
-    color: #2e7d32;
-  }
-  .price {
-    font-size: 1.3rem;
-    font-weight: bold;
-    color: #000;
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  .price small {
-    font-size: 0.9rem;
-    color: #666;
-  }
-  .pricing-card ul {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 20px 0;
-  }
-  .pricing-card ul li {
-    margin: 8px 0;
-    font-size: 0.95rem;
-    color: #444;
-  }
-  .pricing-card button {
-    display: block;
-    width: 100%;
-    background: #2e7d32;
-    color: white;
-    border: none;
-    padding: 12px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 1rem;
-    font-weight: 600;
-    transition: background 0.2s ease;
-  }
-  .pricing-card button:hover {
-    background: #256528;
-  }
-  /* Highlight Plan */
-  .highlight-gold {
-    border: 2px solid #ffb300;
-    transform: scale(1.05);
-  }
-  .highlight-silver {
-    border: 2px solid silver;
-    transform: scale(1.05);
-  }
-  .highlight-platinum {
-    border: 4px solid #E5E4E2;
-    transform: scale(1.05);
-  }
-  /* Info Section  */
-  .info-sections {
-    padding: 50px 20px;
-    background: #f9fafb;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 20px;
-    max-width: 1100px;
-    margin: auto;
-  }
-  .info-card {
-    background: #fff;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-  }
-  .info-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 6px 15px rgba(0,0,0,0.12);
-  }
-  .info-card h2 {
-    font-size: 1.3rem;
-    margin-bottom: 12px;
-    color: #2e7d32;
-  }
-  .info-card p, .info-card li {
-    color: #444;
-    line-height: 1.5;
-    margin: 8px 0;
-    font-size: 0.95rem;
-  }
-  .info-card ul {
-    list-style: none;
-    padding-left: 0;
-  }
-  .info-card ul li::before {
-    content: "✔️ ";
-  }
-  .btn-link {
-    display: inline-block;
-    background: #2e7d32;
-    color: #fff;
-    padding: 8px 14px;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: bold;
-    margin-top: 10px;
-  }
-  .btn-link:hover {
-    background: #256528;
-  }
-  .gst {
-    border-left: 5px solid #ff9800;
-  }
+    /* Optional Section  */
+    .optionals {
+      background: #ffffff;
+      padding: 50px 20px;
+      text-align: center;
+    }
 
-    /* Mobile Optimization */
-    @media (max-width: 768px) {
-      nav ul {
-        display: none;
-        flex-direction: column;
-        background: #2e7d32;
-        position: absolute;
-        top: 60px;
-        right: 20px;
-        padding: 10px;
-        border-radius: 5px;
-      }
-      nav ul.active {
-        display: flex;
-      }
-      .menu-toggle {
-        display: block;
-      }
+    .optionals h2 {
+      font-size: 1.8rem;
+      color: #2e7d32;
+      margin-bottom: 25px;
+    }
+
+    .optional-list {
+      list-style: none;
+      max-width: 700px;
+      margin: auto;
+      padding: 0;
+      text-align: left;
+    }
+
+    .optional-list li {
+      background: #f4f9f4;
+      margin: 10px 0;
+      padding: 15px 20px;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: #333;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .optional-list li:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .optional-list li span {
+      font-size: 0.95rem;
+      color: #555;
+      font-weight: 400;
+      margin-left: 5px;
+    }
+
+    /* Pricing Section */
+    .pricing {
+      background: #f4f9f4;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .pricing h2 {
+      font-size: 2rem;
+      color: #2e7d32;
+      margin-bottom: 40px;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .pricing-card {
+      background: #fff;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      text-align: left;
+      margin: 5px;
+    }
+
+    .pricing-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+    }
+
+    .pricing-card h3 {
+      text-align: center;
+      margin-bottom: 15px;
+      color: #2e7d32;
+    }
+
+    .price {
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #000;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .price small {
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    .pricing-card ul {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 20px 0;
+    }
+
+    .pricing-card ul li {
+      margin: 8px 0;
+      font-size: 0.95rem;
+      color: #444;
+    }
+
+    .pricing-card button {
+      display: block;
+      width: 100%;
+      background: #2e7d32;
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: background 0.2s ease;
+    }
+
+    .pricing-card button:hover {
+      background: #256528;
+    }
+
+    /* Highlight Plan */
+    .highlight-gold {
+      border: 2px solid #ffb300;
+    }
+
+    .highlight-silver {
+      border: 2px solid silver;
+    }
+
+    .highlight-platinum {
+      border: 4px solid #E5E4E2;
+    }
+
+    /* Info Section */
+    .info-sections {
+      padding: 50px 20px;
+      background: #f9fafb;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .info-card {
+      background: #fff;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .info-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
+    }
+
+    .info-card h2 {
+      font-size: 1.3rem;
+      margin-bottom: 12px;
+      color: #2e7d32;
+    }
+
+    .info-card p,
+    .info-card li {
+      color: #444;
+      line-height: 1.5;
+      margin: 8px 0;
+      font-size: 0.95rem;
+    }
+
+    .info-card ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .info-card ul li::before {
+      content: "✔️ ";
+    }
+
+    .btn-link {
+      display: inline-block;
+      background: #2e7d32;
+      color: #fff;
+      padding: 8px 14px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    .btn-link:hover {
+      background: #256528;
+    }
+
+    .gst {
+      border-left: 5px solid #ff9800;
+    }
+
+    .product-image {
+      text-align: center;
+      margin-bottom: 15px;
+      width: 100%;
+    }
+
+    .product-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     }
   </style>
 </head>
+
 <body>
 
   <!-- Green NavBar -->
   <nav>
-    <div class="logo">
-      <a href="index.html">
-        <img alt="Teyzee Sites Logo" src="images/teyzee_sites_logo.png" style="height:100px; width:auto;"/>
-      </a>
+    <div class="top-row">
+      <div class="logo">
+        <a href="index.html">
+          <img alt="Teyzee Sites Logo" src="images/teyzee_sites_logo.png" />
+        </a>
+      </div>
+      <button class="menu-toggle">☰</button>
     </div>
-    <button class="menu-toggle">☰</button> 
-    <!-- Hamburger Menu -->
+
+    <div class="nav-subheading">
+      <h4>TeyZee Storefront</h4>
+    </div>
+
     <ul>
       <li><a href="index.html">Home</a></li>
-      <li><a href="storefront.html">Storefront</a></li>
-      <li><a href="#">Menu</a></li>
+      <li><a href="storefront_index.html">Storefront</a></li>
+      <li><a href="menu_index.html">Menu</a></li>
       <li><a href="#">Booking</a></li>
     </ul>
   </nav>
 
+  <!-- Pricing Section -->
+  <section class="pricing">
+    <div class="pricing-grid">
+
+      <!-- Silver Plan -->
+      <div class="pricing-card highlight-silver">
+        <!--Product Image First -->
+
+        <h3>🥈 Silver Plan</h3>
+
+        <div class="product-image">
+          <img src="images/silver.jpeg" alt="Sample Menu Preview" />
+        </div>
+        <p class="price">₹250/month <br><small>(First year @ 50% off on ₹999)</small></p>
+        <ul>
+          <li>✅ Online E-Commerce Store</li>
+          <li>✅ 3 months store hosting free</li>
+          <li>✅ Free Price & Description Changes</li>
+          <li>❌ No Cart View</li>
+          <li>❌ No Extended Descriptions</li>
+          <li>📦 Up to 20 items in store</li>
+          <li>💳 UPI Payments on WhatsApp</li>
+          <li>🆓 Weekly Store Item Updates</li>
+          <li><strong>One-time Setup: ₹2000</strong></li>
+        </ul>
+        <button>Select Silver</button>
+      </div>
+
+      <!-- Gold Plan -->
+      <div class="pricing-card highlight-gold">
+        <!--Product Image First -->
+        <div class="product-image">
+          <img src="images/gold.jpeg" alt="Sample Menu Preview" />
+        </div>
+        <h3>🥇 Gold Plan</h3>
+        <p class="price">₹350 / month <br><small>(First year @ 50% off on ₹999)</small></p>
+        <ul>
+          <li>✅ Online E-Commerce Store</li>
+          <li>✅ 3 months store hosting free</li>
+          <li>✅ Free Price & Description Changes</li>
+          <li>✅ Cart View & Totals</li>
+          <li>❌ No Extended Descriptions</li>
+          <li>📦 Up to 20 items in store</li>
+          <li>💳 UPI Payments on WhatsApp</li>
+          <li>🆓 Daily Store Item Updates</li>
+          <li><strong>One-time Setup: ₹2000</strong></li>
+        </ul>
+        <button>Select Gold</button>
+      </div>
+
+      <!-- Platinum Plan -->
+      <div class="pricing-card highlight-platinum">
+        <!--Product Image First -->
+        <div class="product-image">
+          <img src="images/platinum.jpeg" alt="Sample Menu Preview" />
+        </div>
+        <h3>💎 Platinum Plan</h3>
+        <p class="price">₹499 / month <br><small>(First year @ 50% off on ₹999)</small></p>
+        <ul>
+          <li>✅ Online E-Commerce Store</li>
+          <li>✅ 3 months store hosting free</li>
+          <li>✅ Free Price & Description Changes</li>
+          <li>✅ Cart View & Totals</li>
+          <li>✅ Extended Descriptions (photos, clothes, shoes, etc.)</li>
+          <li>📦 Up to 200 items with categories</li>
+          <li>💳 UPI Payments or Optional Gateway</li>
+          <li>🆓 Updates every 12 hours</li>
+          <li>📊 Analytics + Data Storage (extra)</li>
+          <li><strong>Setup: ₹2000 for 20 items + ₹100/item extra</strong></li>
+        </ul>
+        <button>Select Platinum</button>
+      </div>
+
+    </div>
+  </section>
   <!-- Hero Section -->
   <section class="hero">
     <h1>💸 Spending Rs 2000/month on Shopify Basic?</h1>
@@ -357,132 +497,73 @@
     <div class="highlight">✨ Get Teyzee Storefront from just Rs 250/month! ✨</div>
   </section>
   <!-- Features Section -->
-<section class="features">
-  <h2>⚡ Key Benefits</h2>
-  <div class="features-grid">
-    <div class="feature-card">🚀 Superfast Online Hosting</div>
-    <div class="feature-card">🛒 Quick Buy Online</div>
-    <div class="feature-card">💰 Guests Pay on UPI directly to you</div>
-    <div class="feature-card">💳 1-Click Payment on WhatsApp Pay</div>
-    <div class="feature-card">💬 Message Customers on WhatsApp for sizes & colors</div>
-    <div class="feature-card">📤 Export Contacts to CRM from WhatsApp</div>
-    <div class="feature-card">📊 Inventory Management on Google Sheet</div>
-  </div>
-</section>
-<!-- Optionals Section -->
-<section class="optionals">
-  <h2>✨ Optionals</h2>
-  <ul class="optional-list">
-    <li>📊 Analytics Package <span>(Weekly & Monthly Reports Available)</span></li>
-    <li>⚙️ Various Pricing Plans and Features <span>(As per your business)</span></li>
-  </ul>
-</section>
-<!-- Pricing Section -->
-<section class="pricing">
-  <h2>💎 Choose Your Plan</h2>
-  <div class="pricing-grid">
-    
-    <!-- Silver Plan -->
-    <div class="pricing-card highlight-silver">
-      <h3>🥈 Silver Plan</h3>
-      <p class="price">₹250 / month <br><small>(First year @ 50% off)</small></p>
-      <ul>
-        <li>✅ Online E-Commerce Store</li>
-        <li>✅ 3 months store hosting free</li>
-        <li>✅ Free Price & Description Changes</li>
-        <li>❌ No Cart View</li>
-        <li>❌ No Extended Descriptions</li>
-        <li>📦 Up to 20 items in store</li>
-        <li>💳 UPI Payments on WhatsApp</li>
-        <li>🆓 Weekly Store Item Updates</li>
-        <li><strong>One-time Setup: ₹2000</strong></li>
-      </ul>
-      <button>Select Silver</button>
+  <section class="features">
+    <h2>⚡ Key Benefits</h2>
+    <div class="features-grid">
+      <div class="feature-card">🚀 Superfast Online Hosting</div>
+      <div class="feature-card">🛒 Quick Buy Online</div>
+      <div class="feature-card">💰 Guests Pay on UPI directly to you</div>
+      <div class="feature-card">💳 1-Click Payment on WhatsApp Pay</div>
+      <div class="feature-card">💬 Message Customers on WhatsApp for sizes & colors</div>
+      <div class="feature-card">📤 Export Contacts to CRM from WhatsApp</div>
+      <div class="feature-card">📊 Inventory Management on Google Sheet</div>
     </div>
-
-    <!-- Gold Plan -->
-    <div class="pricing-card highlight-gold">
-      <h3>🥇 Gold Plan</h3>
-      <p class="price">₹350 / month <br><small>(First year @ 50% off)</small></p>
-      <ul>
-        <li>✅ Online E-Commerce Store</li>
-        <li>✅ 3 months store hosting free</li>
-        <li>✅ Free Price & Description Changes</li>
-        <li>✅ Cart View & Totals</li>
-        <li>❌ No Extended Descriptions</li>
-        <li>📦 Up to 20 items in store</li>
-        <li>💳 UPI Payments on WhatsApp</li>
-        <li>🆓 Daily Store Item Updates</li>
-        <li><strong>One-time Setup: ₹2000</strong></li>
-      </ul>
-      <button>Select Gold</button>
-    </div>
-
-    <!-- Platinum Plan -->
-    <div class="pricing-card highlight-platinum">
-      <h3>💎 Platinum Plan</h3>
-      <p class="price">₹499 / month <br><small>(First year @ 50% off)</small></p>
-      <ul>
-        <li>✅ Online E-Commerce Store</li>
-        <li>✅ 3 months store hosting free</li>
-        <li>✅ Free Price & Description Changes</li>
-        <li>✅ Cart View & Totals</li>
-        <li>✅ Extended Descriptions (photos, clothes, shoes, etc.)</li>
-        <li>📦 Up to 200 items with categories</li>
-        <li>💳 UPI Payments or Optional Gateway</li>
-        <li>🆓 Updates every 12 hours</li>
-        <li>📊 Analytics + Data Storage (extra)</li>
-        <li><strong>Setup: ₹2000 for 20 items + ₹100/item extra</strong></li>
-      </ul>
-      <button>Select Platinum</button>
-    </div>
-
-  </div>
-</section>
-<!-- Info Sections -->
-<section class="info-sections">
-
-  <!-- Subscription Period -->
-  <div class="info-card">
-    <h2>📅 During Subscription Period</h2>
-    <p>Payment terms: Subscription via Payment Gateway for monthly customers.</p>
-    <p><strong>💰 50% off</strong> on annual plan subscription (advance UPI payment).</p>
-  </div>
-
-  <!-- Online Store Example -->
-  <div class="info-card">
-    <h2>🛒 Online Store Example</h2>
-    <p>Check out a Platinum Plan Store:</p>
-    <a href="https://isbeautiful.teyzee.site/" target="_blank" class="btn-link">
-      👉 isbeautiful.teyzee.site
-    </a>
-  </div>
-
-  <!-- Data Privacy and Support -->
-  <div class="info-card">
-    <h2>🔒 Data Privacy & Support</h2>
-    <ul>
-      <li>✅ Orders & messages stay in WhatsApp — we don’t store them.</li>
-      <li>✅ Hosted on top 3 cloud platforms with <strong>failsafe switchover in 12 hours</strong>.</li>
-      <li>⚡ Superfast hosting: Page load < 2.5 secs (support tickets available).</li>
-      <li>📊 Google Sheet inventory stored securely on Google Cloud (India).</li>
-      <li>📂 Analytics data older than 60 days stored on Google Cloud (India).</li>
+  </section>
+  <!-- Optionals Section -->
+  <section class="optionals">
+    <h2>✨ Optionals</h2>
+    <ul class="optional-list">
+      <li>📊 Analytics Package <span>(Weekly & Monthly Reports Available)</span></li>
+      <li>⚙️ Various Pricing Plans and Features <span>(As per your business)</span></li>
     </ul>
-  </div>
+  </section>
 
-  <!-- Subdomain Linking -->
-  <div class="info-card">
-    <h2>🌐 Subdomain Linking</h2>
-    <p>For TSF customers under normal pricing plans, store hosting is on our <strong>teyzee.site</strong> subdomain.</p>
-  </div>
 
-  <!-- GST Info -->
-  <div class="info-card gst">
-    <h2>💡 Note</h2>
-    <p>All costs are exclusive of <strong>GST</strong>.</p>
-  </div>
+  <!-- Info Sections -->
+  <section class="info-sections">
 
-</section>
+    <!-- Subscription Period -->
+    <div class="info-card">
+      <h2>📅 During Subscription Period</h2>
+      <p>Payment terms: Subscription via Payment Gateway for monthly customers.</p>
+      <p><strong>💰 50% off</strong> on annual plan subscription (advance UPI payment).</p>
+    </div>
+
+    <!-- Online Store Example -->
+    <div class="info-card">
+      <h2>🛒 Online Store Example</h2>
+      <p>Check out a Platinum Plan Store:</p>
+      <a href="https://isbeautiful.teyzee.site/" target="_blank" class="btn-link">
+        👉 isbeautiful.teyzee.site
+      </a>
+    </div>
+
+    <!-- Data Privacy and Support -->
+    <div class="info-card">
+      <h2>🔒 Data Privacy & Support</h2>
+      <ul>
+        <li>✅ Orders & messages stay in WhatsApp — we don’t store them.</li>
+        <li>✅ Hosted on top 3 cloud platforms with <strong>failsafe switchover in 12 hours</strong>.</li>
+        <li>⚡ Superfast hosting: Page load < 2.5 secs (support tickets available).</li>
+        <li>📊 Google Sheet inventory stored securely on Google Cloud (India).</li>
+        <li>📂 Analytics data older than 60 days stored on Google Cloud (India).</li>
+      </ul>
+    </div>
+
+    <!-- Subdomain Linking -->
+    <div class="info-card">
+      <h2>🌐 Subdomain Linking</h2>
+      <p>For TSF customers under normal pricing plans, store hosting is on our <strong>teyzee.site</strong> subdomain.
+      </p>
+    </div>
+
+    <!-- GST Info -->
+    <div class="info-card gst">
+      <h2>💡 Note</h2>
+      <p>All costs are exclusive of <strong>GST</strong>.</p>
+    </div>
+
+  </section>
 
 
   <script>
@@ -496,5 +577,5 @@
   </script>
 
 </body>
-</html>
 
+</html>

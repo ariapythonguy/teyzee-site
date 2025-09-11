@@ -20,69 +20,78 @@
         }
 
         /* Navbar */
-        nav {
-            background: linear-gradient(135deg, #43a047, #66bb6a);
-            color: white;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 20px;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
+nav {
+  background: #66bb6a;
+  color: white;
+  display: flex;
+  flex-direction: column;  /* stack logo, subheading, and menu vertically */
+  align-items: center;
+  padding: 15px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 1100;
+}
 
-        nav .logo {
-            font-size: 1.3rem;
-            font-weight: bold;
-            letter-spacing: 1px;
-        }
+.top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;              /* full width row */
+}
 
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 15px;
-        }
+.logo img {
+  height: 100px;
+  width: auto;
+}
 
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-size: 0.95rem;
-            transition: color 0.3s;
-        }
+.menu-toggle {
+  display: block;
+  font-size: 1.8rem;
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: white;
+}
 
-        nav ul li a:hover {
-            color: #c8e6c9;
-        }
+.nav-subheading {
+  margin-top: 8px;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
 
-        /* Mobile menu button (hamburger ☰) */
-        .menu-toggle {
-            display: none;
-            font-size: 1.8rem;
-            cursor: pointer;
-            background: none;
-            border: none;
-            color: white;
-        }
-         /* Mobile Optimization */
-   @media (max-width: 768px) {
-      nav ul {
-        display: none;
-        flex-direction: column;
-        background: #2e7d32;
-        position: absolute;
-        top: 60px;
-        right: 20px;
-        padding: 10px;
-        border-radius: 5px;
-      }
-      nav ul.active {
-        display: flex;
-      }
-      .menu-toggle {
-        display: block;
-      }
-    }
+/* Menu list */
+nav ul {
+  list-style: none;
+  display: none;            /* hidden until toggle */
+  flex-direction: column;
+  background: #2e7d32;
+  position: absolute;
+  top: 120px;               /* appears just below navbar */
+  right: 20px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+nav ul.active {
+  display: flex;
+}
+
+nav ul li {
+  margin: 5px 0;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.3s;
+}
+
+nav ul li a:hover {
+  color: #c8e6c9;
+}
+
 
         .btn {
             display: flex;
@@ -310,22 +319,28 @@
 </head>
 
 <body>
-    <!-- Green NavBar -->
-    <nav>
-        <div class="logo">
-            <a href="index.html">
-                <img alt="Teyzee Sites Logo" src="images/teyzee_sites_logo.png" style="height:100px; width:auto;" />
-            </a>
-        </div>
-        <button class="menu-toggle">☰</button> <!-- Hamburger Menu -->
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="storefront.html">Storefront</a></li>
-            <li><a href="#">Menu</a></li>
-            <li><a href="#">Booking</a></li>
-        </ul>
-    </nav>
+   <!-- Green NavBar -->
+<nav>
+  <div class="top-row">
+    <div class="logo">
+      <a href="index.html">
+        <img alt="Teyzee Sites Logo" src="images/teyzee_sites_logo.png" />
+      </a>
+    </div>
+    <button class="menu-toggle">☰</button>
+  </div>
 
+  <div class="nav-subheading">
+    <h4>TeyZee Menu</h4>
+  </div>
+
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="storefront_index.html">Storefront</a></li>
+    <li><a href="menu_index.html">Menu</a></li>
+    <li><a href="#">Booking</a></li>
+  </ul>
+</nav>
 
     <div class="container">
         <div class="pricing-box" id="silver">
