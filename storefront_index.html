@@ -22,10 +22,9 @@
     nav {
       background: #66bb6a;
       color: white;
-      display: flex;
-      flex-direction: column; /* stack elements vertically */
+      display: flex; 
       align-items: center;
-      padding: 15px 20px;
+      padding: 5px 10px;
       position: sticky;
       top: 0;
       z-index: 1100;
@@ -39,7 +38,7 @@
     }
 
     .logo img {
-      height: 100px;
+      height: 80px;
       width: auto;
     }
 
@@ -53,9 +52,11 @@
     }
 
     .nav-subheading {
+      padding-top: 10px;
       text-align: center;
-      font-size: 2rem;
+      font-size: 1.4rem;
       font-weight: 600;
+      height: 50px;
     }
 
     nav ul {
@@ -64,7 +65,7 @@
       flex-direction: column;
       background: #2e7d32;
       position: absolute;
-      top: 120px; /* below navbar */
+      top: 50px; /* below navbar */
       right: 20px;
       padding: 10px;
       border-radius: 5px;
@@ -240,7 +241,10 @@
       text-align: left;
       margin: 5px;
     }
-
+    .btn-price {
+      text-decoration: none;
+      color: white;
+    }
     .pricing-card:hover {
       transform: translateY(-5px);
       box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
@@ -400,12 +404,13 @@
           <img alt="Teyzee Sites Logo" src="images/teyzee_sites_logo.png" />
         </a>
       </div>
+      <div class="nav-subheading">
+      <h4>TeyZee Storefront</h4>
+      </div>
       <button class="menu-toggle">☰</button>
     </div>
 
-    <div class="nav-subheading">
-      <h4>TeyZee Storefront</h4>
-    </div>
+    
 
     <ul>
       <li><a href="index.html">Home</a></li>
@@ -428,29 +433,31 @@
         <div class="product-image">
           <img src="images/silver.jpeg" alt="Sample Menu Preview" />
         </div>
-        <p class="price">₹250/month <br><small>(First year @ 50% off on ₹999)</small></p>
+        <p class="price">₹250/month <br><small>(First year @ 50% off on ₹499)</small></p>
         <ul>
           <li>✅ Online E-Commerce Store</li>
           <li>✅ 3 months store hosting free</li>
           <li>✅ Free Price & Description Changes</li>
-          <li>❌ No Cart View</li>
+          <li>✅ Cart View</li>
           <li>❌ No Extended Descriptions</li>
+          <li>❌ Flexible Inventory</li>
           <li>📦 Up to 20 items in store</li>
           <li>💳 UPI Payments on WhatsApp</li>
           <li>🆓 Weekly Store Item Updates</li>
-          <li><strong>One-time Setup: ₹2000</strong></li>
+          <li><strong>One Time Store Setup: ₹1000</strong></li>
         </ul>
-        <button>Select Silver</button>
+        <button><a class="btn-price" href="https://www.ariaprohotels.com/product/teyzee-storefront-silver-plan-subscription/ ">Select Silver</a></button>
       </div>
 
       <!-- Gold Plan -->
       <div class="pricing-card highlight-gold">
+        
+        <h3>🥇 Gold Plan</h3>
         <!--Product Image First -->
         <div class="product-image">
           <img src="images/gold.jpeg" alt="Sample Menu Preview" />
         </div>
-        <h3>🥇 Gold Plan</h3>
-        <p class="price">₹350 / month <br><small>(First year @ 50% off on ₹999)</small></p>
+        <p class="price">₹350 / month <br><small>(First year @ 50% off on ₹699)</small></p>
         <ul>
           <li>✅ Online E-Commerce Store</li>
           <li>✅ 3 months store hosting free</li>
@@ -460,18 +467,20 @@
           <li>📦 Up to 20 items in store</li>
           <li>💳 UPI Payments on WhatsApp</li>
           <li>🆓 Daily Store Item Updates</li>
-          <li><strong>One-time Setup: ₹2000</strong></li>
+          <li>🆓 Updates every 4 hours</li>
+          <li><strong>One-time Setup: ₹1500</strong></li>
         </ul>
-        <button>Select Gold</button>
+        <button><a class="btn-price" href=" https://www.ariaprohotels.com/product/teyzee-storefront-gold-plan-subscription/">Select Gold</a></button>
       </div>
 
       <!-- Platinum Plan -->
       <div class="pricing-card highlight-platinum">
         <!--Product Image First -->
+        
+        <h3>💎 Platinum Plan</h3>
         <div class="product-image">
           <img src="images/platinum.jpeg" alt="Sample Menu Preview" />
         </div>
-        <h3>💎 Platinum Plan</h3>
         <p class="price">₹499 / month <br><small>(First year @ 50% off on ₹999)</small></p>
         <ul>
           <li>✅ Online E-Commerce Store</li>
@@ -481,11 +490,11 @@
           <li>✅ Extended Descriptions (photos, clothes, shoes, etc.)</li>
           <li>📦 Up to 200 items with categories</li>
           <li>💳 UPI Payments or Optional Gateway</li>
-          <li>🆓 Updates every 12 hours</li>
-          <li>📊 Analytics + Data Storage (extra)</li>
-          <li><strong>Setup: ₹2000 for 20 items + ₹100/item extra</strong></li>
+          <li>🆓 Updates every 4 hours</li>
+          <li>📊 Analytics + Data Storage (extra starting from ₹100/month)</li>
+          <li><strong>Setup: ₹2000 for 20 items</strong></li>
         </ul>
-        <button>Select Platinum</button>
+        <button><a class="btn-price" href="https://www.ariaprohotels.com/?post_type=product&p=8038&preview=true">Select Platinum</a></button>
       </div>
 
     </div>

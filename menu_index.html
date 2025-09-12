@@ -26,10 +26,11 @@ nav {
   display: flex;
   flex-direction: column;  /* stack logo, subheading, and menu vertically */
   align-items: center;
-  padding: 15px 20px;
+  padding: 5px 10px;
   position: sticky;
   top: 0;
   z-index: 1100;
+  
 }
 
 .top-row {
@@ -40,7 +41,7 @@ nav {
 }
 
 .logo img {
-  height: 100px;
+  height: 80px;
   width: auto;
 }
 
@@ -54,10 +55,11 @@ nav {
 }
 
 .nav-subheading {
-  margin-top: 8px;
+    margin-top: -20px;
   text-align: center;
   font-size: 1.5rem;
   font-weight: 600;
+  height: 70px;
 }
 
 /* Menu list */
@@ -67,7 +69,7 @@ nav ul {
   flex-direction: column;
   background: #2e7d32;
   position: absolute;
-  top: 120px;               /* appears just below navbar */
+  top: 50px;               /* appears just below navbar */
   right: 20px;
   padding: 10px;
   border-radius: 5px;
@@ -327,11 +329,10 @@ nav ul li a:hover {
         <img alt="Teyzee Sites Logo" src="images/teyzee_sites_logo.png" />
       </a>
     </div>
-    <button class="menu-toggle">☰</button>
+    <div class="nav-subheading">
+    <h4>TeyZee Menus</h4>
   </div>
-
-  <div class="nav-subheading">
-    <h4>TeyZee Menu</h4>
+    <button class="menu-toggle">☰</button>
   </div>
 
   <ul>
