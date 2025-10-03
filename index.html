@@ -5,307 +5,26 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Teyzee</title>
-<style>
-    /* Reset */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: #f9f9f9;
-      color: #333;
-      line-height: 1.6;
-    }
-     /* Navbar */
-    nav {
-      background: #2e7d32; /* green */
-      color: white;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 20px;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-    nav .logo {
-      font-size: 1.3rem;
-      font-weight: bold;
-      letter-spacing: 1px;
-    }
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 15px;
-    }
-    nav ul li a {
-      color: white;
-      text-decoration: none;
-      font-size: 0.95rem;
-      transition: color 0.3s;
-    }
-    nav ul li a:hover {
-      color: #c8e6c9;
-    }
-
-    /* Mobile menu button (hamburger ☰) */
-    .menu-toggle {
-      display: none;
-      font-size: 1.8rem;
-      cursor: pointer;
-      background: none;
-      border: none;
-      color: white;
-    }
-
-    /* Hero Section */
-    .hero {
-      background: #ffffff; /* light */
-      color: #333;
-      text-align: center;
-      padding: 60px 20px;
-      border-bottom: 2px solid #eee;
-    }
-
-    .hero h1 {
-      font-size: 1.8rem;
-      margin-bottom: 15px;
-      line-height: 1.4;
-      color: #2e7d32;
-    }
-
-    .hero p {
-      font-size: 1.1rem;
-      margin-bottom: 20px;
-      line-height: 1.5;
-      max-width: 500px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .hero .highlight {
-      font-size: 1.3rem;
-      font-weight: bold;
-      background: #e8f5e9;
-      color: #2e7d32;
-      padding: 12px 18px;
-      border-radius: 8px;
-      margin-top: 10px;
-      display: inline-block;
-    }
-/* Feature Section */
-    .features {
-    background: #f4f9f4;
-    padding: 50px 20px;
-    text-align: center;
-  }
-  .features h2 {
-    font-size: 1.8rem;
-    color: #2e7d32;
-    margin-bottom: 30px;
-  }
-  .features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    max-width: 1000px;
-    margin: auto;
-  }
-  .feature-card {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
-    font-size: 1.05rem;
-    font-weight: 500;
-    color: #333;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-  }
-  .feature-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
-  }
-    /* Mobile Optimization */
-    @media (max-width: 768px) {
-      nav ul {
-        display: none;
-        flex-direction: column;
-        background: #2e7d32;
-        position: absolute;
-        top: 60px;
-        right: 20px;
-        padding: 10px;
-        border-radius: 5px;
-      }
-      nav ul.active {
-        display: flex;
-      }
-      .menu-toggle {
-        display: block;
-      }
-    }
-
-    /* Container */
-    .container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 25px;
-      max-width: 1200px;
-      margin: 40px auto;
-      padding: 0 20px;
-    }
-
-    /* Panels */
-    .panel {
-      background: white;
-      border-radius: 12px;
-      padding: 30px 20px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      cursor: pointer;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .panel:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-    }
-
-    .panel::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 0%;
-      height: 100%;
-      background: rgba(76,175,80,0.05);
-      transition: width 0.4s ease;
-      z-index: 0;
-    }
-
-    .panel:hover::before {
-      width: 100%;
-    }
-
-    .panel h2 {
-      font-size: 1.6rem;
-      color: #2e7d32;
-      margin-bottom: 15px;
-      position: relative;
-      z-index: 1;
-      text-align: center;
-    }
-
-    .panel p {
-      font-size: 1rem;
-      color: #555;
-      margin-bottom: 20px;
-      text-align: center;
-      z-index: 1;
-      position: relative;
-    }
-
-    .feature {
-      display: flex;
-      align-items: center;
-      background: #e8f5e9;
-      padding: 12px 15px;
-      margin: 8px 0;
-      border-radius: 8px;
-      font-size: 0.95rem;
-      color: #2e7d32;
-      font-weight: 500;
-      z-index: 1;
-      position: relative;
-    }
-
-    .feature span {
-      margin-right: 10px;
-      font-size: 1.2rem;
-    }
-
-    /* Footer */
-    footer {
-      margin-top: 50px;
-      padding: 20px;
-      text-align: center;
-      background: #f1f1f1;
-      font-size: 0.9rem;
-      color: #555;
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      header h1 {
-        font-size: 2rem;
-      }
-
-      .panel h2 {
-        font-size: 1.3rem;
-      }
-
-      .panel p {
-        font-size: 0.9rem;
-      }
-    }
-
-    @media (max-width: 480px) {
-      header {
-        padding: 25px 15px;
-      }
-      header h1 {
-        font-size: 1.7rem;
-      }
-      header p {
-        font-size: 0.85rem;
-      }
-      .panel {
-        padding: 20px 15px;
-      }
-    }
-  </style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 <!-- Green NavBar -->
-<nav>
-<div class="logo">
-<a href="index.html">
-<img alt="Teyzee Sites Logo" src="images/teyzee_sites_logo.png" style="height:100px; width:auto;"/>
-</a>
-</div>
-<button class="menu-toggle">☰</button> <!-- Hamburger Menu -->
-<ul>
-<li><a href="index.html">Home</a></li>
-<li><a href="storefront_index.html">Storefront</a></li>
-<li><a href="menu_index.html">Menu</a></li>
-<li><a href="booking_index.html">Booking</a></li>
-</ul>
-</nav>
-     <!-- Hero Section -->
-  <section class="hero">
-    <h1>💸 Looking for a Simple Online Store to Sell Your Products/ Food Delivery / Appointments & Services ?</h1>
-    <p>👉 Save <strong> 1000s of Rupees per month </strong> and invest it in 🚀 WhatsApp Ads for your store.</p>
-    <div class="highlight">✨ Get Teyzee Sites from just Rs 250/month! ✨</div>
-  </section>
-     <!-- Hero Section -->
-  <!-- Features Section -->
-<section class="features">
-  <h2>⚡ Key Benefits</h2>
-  <div class="features-grid">
-    <div class="feature-card">🚀 Superfast Online Hosting</div>
-    <div class="feature-card">🛒 Quick Buy Online</div>
-    <div class="feature-card">💰 Guests Pay on UPI directly to you</div>
-    <div class="feature-card">💳 1-Click Payment on WhatsApp Pay</div>
-    <div class="feature-card">💬 Message Customers on WhatsApp for sizes & colors</div>
-    <div class="feature-card">📤 Export Contacts to CRM from WhatsApp</div>
-    <div class="feature-card">📊 Inventory Management on Google Sheet</div>
-  </div>
-</section>
-    <!-- Features Section -->
+  <nav>
+    <div class="logo">
+      <a href="index.html">
+        <img alt="Teyzee Sites Logo" src="images/teyzee_sites_logo.png" style="height:100px; width:auto;"/>
+      </a>
+    </div>
+    <button class="menu-toggle">☰</button> <!-- Hamburger Menu -->
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="storefront.html">Storefront</a></li>
+      <li><a href="menu_index.html">Menu</a></li>
+      <li><a href="#">Booking</a></li>
+    </ul>
+  </nav>
+ 
+
 <main class="container">
   <div class="panel">
   <a href="storefront_index.html" style="text-decoration:none; color:inherit; display:block;">
@@ -338,10 +57,20 @@
 </div>
 
 </main>
-<footer>Contact Us on 
+<footer class="footer1">Contact Us on 
     <li><a href="mailto:info@teyzee.site">Email Us</a></li>
 <li><a href="https://wa.me/919029027420">WhatsApp Us</a></li> 
     © 2025 Teyzee Sites ( C/o Kall Trip P Ltd - Since 2011 - 14 years of Service). All rights reserved. 
   </footer>
+
+  <script>
+    // Toggle menu on click
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('nav ul');
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+  </script>
 </body>
 </html>
